@@ -1,7 +1,10 @@
 {
   "name": "package2",
   "version": "0.1.2",
-  "dependencies": {
+  "devDependencies": {
+    "package1": "^0.1.6"
+  },
+  "peerDependencies": {
     "package1": "^0.1.5"
   }
 }
