@@ -1,0 +1,12 @@
+diff --git a/node_modules/@lerna/version/lib/prompt-version.js b/node_modules/@lerna/version/lib/prompt-version.js
+index 9ea1e3b..aad9d85 100644
+--- a/node_modules/@lerna/version/lib/prompt-version.js
++++ b/node_modules/@lerna/version/lib/prompt-version.js
+@@ -38,6 +38,7 @@ function promptVersion(currentVersion, name, prereleaseId) {
+       { value: premajor, name: `Premajor (${premajor})` },
+       { value: "PRERELEASE", name: "Custom Prerelease" },
+       { value: "CUSTOM", name: "Custom Version" },
++      { value: currentVersion, name: "Leave version as is (see readme for usecases)" },
+     ],
+   }).then(choice => {
+     if (choice === "CUSTOM") {
