@@ -1,0 +1,9 @@
+{
+  "name": "lerna-patch-test",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "lerna": "^3.20.2",
+    "yarn": "^1.21.1"
+  }
+}
