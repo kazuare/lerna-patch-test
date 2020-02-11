@@ -1,0 +1,38 @@
+diff --git a/node_modules/@lerna/package-graph/index.js b/node_modules/@lerna/package-graph/index.js
+index f860af4..880d177 100644
+--- a/node_modules/@lerna/package-graph/index.js
++++ b/node_modules/@lerna/package-graph/index.js
+@@ -5,6 +5,7 @@ const ValidationError = require("@lerna/validation-error");
+ const { CyclicPackageGraphNode } = require("./lib/cyclic-package-graph-node");
+ const { PackageGraphNode } = require("./lib/package-graph-node");
+ const { reportCycles } = require("./lib/report-cycles");
++const log = require("npmlog");
+ 
+ /**
+  * A PackageGraph.
+@@ -15,6 +16,7 @@ const { reportCycles } = require("./lib/report-cycles");
+  *    excluding the devDependencies that would normally be included.
+  * @param {Boolean} forceLocal Force all local dependencies to be linked.
+  */
++
+ class PackageGraph extends Map {
+   constructor(packages, graphType = "allDependencies", forceLocal) {
+     super(packages.map(pkg => [pkg.name, new PackageGraphNode(pkg)]));
+@@ -60,12 +62,16 @@ class PackageGraph extends Map {
+         const spec = graphDependencies[depName].replace(/^link:/, "file:");
+         const resolved = npa.resolve(depName, spec, currentNode.location);
+ 
++        log.warn("depName", depName);
++        log.warn("depNode", JSON.stringify(depNode));
++        log.warn("resolved", JSON.stringify(resolved));
++
+         if (!depNode) {
+           // it's an external dependency, store the resolution and bail
+           return currentNode.externalDependencies.set(depName, resolved);
+         }
+ 
+-        if (forceLocal || resolved.fetchSpec === depNode.location || depNode.satisfies(resolved)) {
++        if (forceLocal || resolved.fetchSpec === depNode.location || depNode.satisfies(resolved)|| resolved.rawSpec === "SNAPSHOT") {
+           // a local file: specifier OR a matching semver
+           currentNode.localDependencies.set(depName, resolved);
+           depNode.localDependents.set(currentName, currentNode);

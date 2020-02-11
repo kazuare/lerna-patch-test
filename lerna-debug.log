@@ -1,0 +1,63 @@
+0 silly argv { _: [ 'version' ],
+0 silly argv   'force-publish': 'package1,package2',
+0 silly argv   forcePublish: 'package1,package2',
+0 silly argv   lernaVersion: '3.20.2',
+0 silly argv   '$0': 'node_modules\\lerna\\cli.js' }
+1 notice cli v3.20.2
+2 verbose rootPath C:\Users\Egor\IdeaProjects\lerna-patch-test-2
+3 info versioning independent
+4 warn depName package1
+5 warn depNode {"name":"package1","externalDependencies":{},"localDependencies":{},"localDependents":{}}
+6 warn resolved {"type":"tag","registry":true,"raw":"package1@SNAPSHOT","name":"package1","escapedName":"package1","rawSpec":"SNAPSHOT","saveSpec":null,"fetchSpec":"SNAPSHOT"}
+7 silly isAnythingCommitted
+8 verbose isAnythingCommitted 1
+9 silly currentBranch
+10 verbose currentBranch master
+11 silly remoteBranchExists
+12 silly isBehindUpstream
+13 silly isBehindUpstream master is behind origin/master by 0 commit(s) and ahead by 0
+14 silly hasTags
+15 verbose hasTags true
+16 silly git-describe.sync "package1@2.0.1-alpha.0-0-g5697850-dirty" => {"lastTagName":"package1@2.0.1-alpha.0","lastVersion":"2.0.1-alpha.0","refCount":"0","sha":"5697850","isDirty":true}
+17 warn force-publish package1
+17 warn force-publish package2
+18 info Looking for changed packages since package1@2.0.1-alpha.0
+19 verbose updated package1
+20 verbose updated package2
+21 info execute Skipping releases
+22 silly lifecycle No script for "preversion" in "lerna-patch-test", continuing
+23 warn depName package1
+24 warn depNode {"name":"package1","externalDependencies":{},"localDependencies":{},"localDependents":{}}
+25 warn resolved {"type":"tag","registry":true,"raw":"package1@SNAPSHOT","name":"package1","escapedName":"package1","rawSpec":"SNAPSHOT","saveSpec":null,"fetchSpec":"SNAPSHOT"}
+26 silly lifecycle No script for "preversion" in "package1", continuing
+27 silly lifecycle No script for "version" in "package1", continuing
+28 silly lifecycle No script for "preversion" in "package2", continuing
+29 error pkg {"name":"package2","version":"2.0.0-alpha.0","dependencies":{"package1":"SNAPSHOT"}}
+30 error resolved {"type":"tag","registry":true,"raw":"package1@SNAPSHOT","name":"package1","escapedName":"package1","rawSpec":"SNAPSHOT","saveSpec":null,"fetchSpec":"SNAPSHOT"}
+31 error depVersion "4.0.0-alpha.0"
+32 silly lifecycle No script for "version" in "package2", continuing
+33 silly lifecycle No script for "version" in "lerna-patch-test", continuing
+34 silly gitAdd [ 'C:\\Users\\Egor\\IdeaProjects\\lerna-patch-test-2\\packages\\package1\\package.json',
+34 silly gitAdd   'C:\\Users\\Egor\\IdeaProjects\\lerna-patch-test-2\\packages\\package2\\package.json' ]
+35 silly gitCommit Publish
+35 silly gitCommit
+35 silly gitCommit  - package1@4.0.0-alpha.0
+35 silly gitCommit  - package2@2.0.0-alpha.0
+36 verbose git [ 'commit',
+36 verbose git   '-F',
+36 verbose git   'C:\\Users\\Egor\\AppData\\Local\\Temp\\12d69b14-d596-4151-80ee-6b61dae07004\\lerna-commit.txt' ]
+37 silly gitTag package1@4.0.0-alpha.0
+38 verbose git [ 'tag',
+38 verbose git   'package1@4.0.0-alpha.0',
+38 verbose git   '-m',
+38 verbose git   'package1@4.0.0-alpha.0' ]
+39 silly gitTag package2@2.0.0-alpha.0
+40 verbose git [ 'tag',
+40 verbose git   'package2@2.0.0-alpha.0',
+40 verbose git   '-m',
+40 verbose git   'package2@2.0.0-alpha.0' ]
+41 error Error: Command failed: git tag package2@2.0.0-alpha.0 -m package2@2.0.0-alpha.0
+41 error fatal: tag 'package2@2.0.0-alpha.0' already exists
+41 error
+41 error     at makeError (C:\Users\Egor\IdeaProjects\lerna-patch-test-2\node_modules\execa\index.js:174:9)
+41 error     at Promise.all.then.arr (C:\Users\Egor\IdeaProjects\lerna-patch-test-2\node_modules\execa\index.js:278:16)

@@ -1,3 +1,25 @@
+diff --git a/node_modules/@lerna/version/index.js b/node_modules/@lerna/version/index.js
+index 80bd8db..c00342d 100644
+--- a/node_modules/@lerna/version/index.js
++++ b/node_modules/@lerna/version/index.js
+@@ -34,6 +34,8 @@ const makePromptVersion = require("./lib/prompt-version");
+ const createRelease = require("./lib/create-release");
+ const { updateLockfileVersion } = require("./lib/update-lockfile-version");
+ 
++const log = require("npmlog");
++
+ const { collectPackages, getPackagesForOption } = collectUpdates;
+ 
+ module.exports = factory;
+@@ -506,7 +508,7 @@ class VersionCommand extends Command {
+         for (const [depName, resolved] of this.packageGraph.get(pkg.name).localDependencies) {
+           const depVersion = this.updatesVersions.get(depName);
+ 
+-          if (depVersion && resolved.type !== "directory") {
++          if (depVersion && resolved.type !== "directory" && !resolved.rawSpec === "SNAPSHOT") {
+             // don't overwrite local file: specifiers, they only change during publish
+             pkg.updateLocalDependency(resolved, depVersion, this.savePrefix);
+           }
 diff --git a/node_modules/@lerna/version/lib/prompt-version.js b/node_modules/@lerna/version/lib/prompt-version.js
 index 9ea1e3b..aad9d85 100644
 --- a/node_modules/@lerna/version/lib/prompt-version.js
